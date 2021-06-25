@@ -1,0 +1,12 @@
+{
+    "vcenter_server":"",
+    "username":"",
+    "password":"",
+    "datastore":"",
+    "folder":"",
+    "host":"",
+    "cluster":"",
+    "network":"",
+    "ssh_username":"",
+    "ssh_password":""
+}

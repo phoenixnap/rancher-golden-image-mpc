@@ -1,0 +1,67 @@
+{
+    "builders": [
+        {
+            "name": "rke2_20042_pnap",
+            "type": "vsphere-iso",
+            "guest_os_type": "ubuntu64Guest",
+            "vm_version": 15,
+            "RAM": 8192,
+            "CPUs": 8,
+            "boot_order": "disk,cdrom",
+            "cluster": "{{user `cluster`}}",
+            "resource_pool": "g-rke-cluster-dev",
+            "convert_to_template": "true",
+            "datastore": "{{user `datastore`}}",
+            "disk_controller_type": "pvscsi",
+            "iso_url": "https://releases.ubuntu.com/20.04.2/ubuntu-20.04.2-live-server-amd64.iso",
+            "iso_checksum": "d1f2bf834bbe9bb43faf16f9be992a6f3935e65be0edece1dee2aa6eb1767423",
+
+            "network_adapters": [
+                {
+                    "network": "{{user `network`}}",
+                    "network_card": "vmxnet3" 
+                }
+            ],
+
+            "storage": [
+                {
+                    "disk_size": 102400,
+                    "disk_thin_provisioned": true
+                }
+            ],
+            
+            "ssh_password": "{{user `ssh_password`}}", 
+            "ssh_username": "{{user `ssh_username`}}",
+            "ssh_timeout": "20m",
+            "http_directory": "http",
+            
+            "boot_wait": "5s",
+            "boot_command": [
+                "<enter><enter><f6><esc><wait> ", 
+                "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
+                "<enter>"
+            ],
+
+            "insecure_connection": "true",
+            "username": "{{ user `username` }}", 
+            "password": "{{ user `password` }}", 
+            "vcenter_server": "{{ user `vcenter_server` }}", 
+            "vm_name": "rke2_20042_pnap"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done"
+            ]
+        },
+        {
+            "execute_command": "echo '{{user `ssh_password`}}' | sudo -S -E bash '{{.Path}}'",
+            "scripts": [
+                "script.sh"
+            ],
+            "type": "shell"
+        }
+    ]
+}

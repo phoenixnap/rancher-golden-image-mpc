@@ -28,7 +28,8 @@ The golden image created using Packer allows you to integrate Rancher with your 
 
 **2. Insert values inside variables.json**
 
-    example:
+ Example:
+ 
     {
         "vcenter_server":"10.100.2.20",
         "username":"admin",
@@ -39,7 +40,7 @@ The golden image created using Packer allows you to integrate Rancher with your 
         "network":"K8SRKENETWORK",
         "ssh_username":"ubuntu",
         "ssh_password":"changeme"
-}
+     }
 
 **3. Run packer**
 

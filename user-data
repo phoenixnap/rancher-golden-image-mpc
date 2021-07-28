@@ -1,0 +1,22 @@
+#cloud-config
+autoinstall:
+    version: 1
+    early-commands:
+        - systemctl stop ssh
+    locale: en_US
+    keyboard:
+        layout: en
+        variant: us
+    refresh-installer:
+        update: yes
+    identity:
+        hostname: ubuntu
+        username: pnap
+        password: "$6$xyz$9vc9yeDgngEirzYEeLZqCay8YLhc7JHmd1t2UYrjdm7dD0M6raCXz.xtEXBL4.aaRf26S/aKagS36D1iH7E79."
+    ssh:
+        install-server: yes
+        allow-pw: yes
+    packages:
+        - open-vm-tools
+    late-commands:
+        - echo 'pnap ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu

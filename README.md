@@ -45,3 +45,17 @@ The golden image created using Packer allows you to integrate Rancher with your 
 **3. Run packer**
 
     /usr/bin/packer build --force --var-file=variables.json ubuntu-2004.json
+
+
+  ### Contact phoenixNAP
+
+Get in touch with us if you have questions or need help with Managed Private Cloud or our other solutions.
+
+<p align="left">
+  <a href="https://twitter.com/phoenixNAP">Twitter</a> •
+  <a href="https://www.facebook.com/phoenixnap">Facebook</a> •
+  <a href="https://www.linkedin.com/company/phoenix-nap">LinkedIn</a> •
+  <a href="https://www.instagram.com/phoenixnap">Instagram</a> •
+  <a href="https://www.youtube.com/user/PhoenixNAPdatacenter">YouTube</a> •
+  <a href="https://developers.phoenixnap.com/support">Email</a> 
+</p>
